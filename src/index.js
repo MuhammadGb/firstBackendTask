@@ -12,7 +12,7 @@ app.use(cors());
 app.get("/", async (req, res, next) => {
   try {
     res.json({
-      slackUsername: "MuhammadGb",
+      slackUsername: "MuhammadGB",
       age: 1,
       backend: true,
       bio: "Nothing really spectacular about me except that I am a Muslim",
