@@ -12,13 +12,10 @@ app.use(cors());
 app.get("/", async (req, res, next) => {
   try {
     res.json({
-      data: {
-        owners: [
-          { name: "Hou", id: 1 },
-          { name: "Tim", id: 2 },
-        ],
-        restaurantLocation: "This is a an address",
-      },
+      slackUsername: "MuhammadGb",
+      age: 1,
+      backend: true,
+      bio: "Nothing really spectacular about me except that I am a Muslim",
     });
   } catch (error) {
     next(error);
