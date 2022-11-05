@@ -25,13 +25,8 @@ app.post("/", async (req, res, next) => {
   try {
     let result;
     const { operation_type, x, y } = req.body;
-    if (recipe === undefined) {
+    if (recipe === undefined || operation_type === undefined) {
       const err = new Error("result not found");
-      err.statusCode = 404;
-      throw err;
-    }
-    if (operation_type === undefined) {
-      const err = new Error("operation_type not found");
       err.statusCode = 404;
       throw err;
     }
@@ -46,6 +41,7 @@ app.post("/", async (req, res, next) => {
       slackUsername: "MuhammadGB",
       result,
       operation_type,
+      statusCode: 200,
     });
   } catch (error) {
     next(error);
