@@ -46,6 +46,8 @@ app.post("/", async (req, res, next) => {
       slackUsername: "MuhammadGB",
       result,
       operation_type,
+      x,
+      y,
     });
   } catch (error) {
     next(error);
