@@ -21,6 +21,26 @@ app.get("/", async (req, res, next) => {
     next(error);
   }
 });
+app.post("/", async (req, res, next) => {
+  try {
+    let result;
+    const { operation_type, x, y } = req.body;
+    if (operation_type === "addition") {
+      result = x + y;
+    } else if (operation_type === "subtraction") {
+      result = Math.abs(x - y);
+    } else if (operation_type === "multiplication") {
+      result = x * y;
+    }
+    res.status(201).json({
+      slackUsername: "MuhammadGB",
+      result,
+      operation_type,
+    });
+  } catch (error) {
+    next(error);
+  }
+});
 
 app.use(handleError);
 
