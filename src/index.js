@@ -23,7 +23,7 @@ app.get("/", async (req, res, next) => {
 });
 app.post("/", async (req, res, next) => {
   try {
-    let result = 9;
+    let result;
     const { operation_type, x, y } = req.body;
     if (operation_type === undefined) {
       const err = new Error("missing parameters");
@@ -46,6 +46,7 @@ app.post("/", async (req, res, next) => {
       slackUsername: "MuhammadGB",
       result,
       operation_type,
+      test: "dis",
     });
   } catch (error) {
     next(error);
