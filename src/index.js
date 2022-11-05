@@ -37,10 +37,10 @@ app.post("/", async (req, res, next) => {
     } else if (operation_type === "multiplication") {
       result = x * y;
     }
-    res.status(200).json({
+    res.status(200).send({
       slackUsername: "MuhammadGB",
-      result,
-      operation_type,
+      result: result,
+      operation_type: operation_type,
       statusCode: 200,
     });
   } catch (error) {
