@@ -25,7 +25,7 @@ app.post("/", async (req, res, next) => {
   try {
     let result;
     const { operation_type, x, y } = req.body;
-    if (recipe === undefined || operation_type === undefined) {
+    if (operation_type === undefined) {
       const err = new Error("missing parameters");
       err.statusCode = 404;
       throw err;
@@ -37,11 +37,10 @@ app.post("/", async (req, res, next) => {
     } else if (operation_type === "multiplication") {
       result = x * y;
     }
-    res.status(200).send({
+    res.status(200).json({
       slackUsername: "MuhammadGB",
-      result: result,
-      operation_type: operation_type,
-      statusCode: 200,
+      result,
+      operation_type,
     });
   } catch (error) {
     next(error);
