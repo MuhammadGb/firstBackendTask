@@ -25,7 +25,7 @@ app.post("/", async (req, res, next) => {
   try {
     let result;
     const { operation_type, x, y } = req.body;
-    if (operation_type === undefined) {
+    if (!operation_type || !x || !y) {
       const err = new Error("missing parameters");
       err.statusCode = 404;
       throw err;
