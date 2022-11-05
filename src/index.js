@@ -30,17 +30,17 @@ app.post("/", async (req, res, next) => {
       err.statusCode = 404;
       throw err;
     }
-    const addition = operation_type.match(/(addition|add|plus)/i);
-    const subtraction = operation_type.match(/(subtraction|subtract|minus)/i);
+    const addition = operation_type.match(/(addition|add|plus)/gi);
+    const subtraction = operation_type.match(/(subtraction|subtract|minus)/gi);
     const multiplication = operation_type.match(
-      /(multiplication|multiply|times)/i,
+      /(multiplication|multiply|times)/gi,
     );
-    if (operation_type === addition) {
-      result = x + y;
-    } else if (operation_type === subtraction) {
-      result = Math.abs(x - y);
-    } else if (operation_type === multiplication) {
-      result = x * y;
+    if (addition) {
+      result = Math.abs(Number(x) + Number(y));
+    } else if (subtraction) {
+      result = Math.abs(Number(x) - Number(y));
+    } else if (multiplication) {
+      result = Number(x) * Number(y);
     }
     res.status(200).json({
       slackUsername: "MuhammadGB",
