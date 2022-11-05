@@ -25,6 +25,16 @@ app.post("/", async (req, res, next) => {
   try {
     let result;
     const { operation_type, x, y } = req.body;
+    if (recipe === undefined) {
+      const err = new Error("result not found");
+      err.statusCode = 404;
+      throw err;
+    }
+    if (operation_type === undefined) {
+      const err = new Error("operation_type not found");
+      err.statusCode = 404;
+      throw err;
+    }
     if (operation_type === "addition") {
       result = x + y;
     } else if (operation_type === "subtraction") {
@@ -32,7 +42,7 @@ app.post("/", async (req, res, next) => {
     } else if (operation_type === "multiplication") {
       result = x * y;
     }
-    res.status(201).json({
+    res.status(200).json({
       slackUsername: "MuhammadGB",
       result,
       operation_type,
