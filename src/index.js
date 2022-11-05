@@ -24,6 +24,7 @@ app.get("/", async (req, res, next) => {
 app.post("/", async (req, res, next) => {
   try {
     let result;
+    let operation;
     const { operation_type, x, y } = req.body;
     if (!operation_type || !x || !y) {
       const err = new Error("missing parameters");
@@ -36,18 +37,20 @@ app.post("/", async (req, res, next) => {
       /(multiplication|multiply|times)/gi,
     );
     if (addition) {
+      operation = addition;
       result = Math.abs(Number(x) + Number(y));
     } else if (subtraction) {
+      operation = subtraction;
       result = Math.abs(Number(x) - Number(y));
     } else if (multiplication) {
+      operation = multiplication;
       result = Number(x) * Number(y);
     }
     res.status(200).json({
       slackUsername: "MuhammadGB",
       result,
       operation_type,
-      x,
-      y,
+      operation,
     });
   } catch (error) {
     next(error);
