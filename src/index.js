@@ -22,8 +22,8 @@ app.get("/", async (req, res, next) => {
   }
 });
 app.post("/", async (req, res, next) => {
+  let result;
   try {
-    let result;
     const { operation_type, x, y } = req.body;
     if (operation_type === undefined) {
       const err = new Error("missing parameters");
@@ -44,7 +44,7 @@ app.post("/", async (req, res, next) => {
     }
     res.status(200).json({
       slackUsername: "MuhammadGB",
-      result: 4,
+      result,
       operation_type,
     });
   } catch (error) {
