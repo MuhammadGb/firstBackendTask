@@ -37,13 +37,13 @@ app.post("/", async (req, res, next) => {
       /(multiplication|multiply|times)/gi,
     );
     if (addition) {
-      operation = addition;
+      operation = addition[0];
       result = Math.abs(Number(x) + Number(y));
     } else if (subtraction) {
-      operation = subtraction;
+      operation = subtraction[0];
       result = Math.abs(Number(x) - Number(y));
     } else if (multiplication) {
-      operation = multiplication;
+      operation = multiplication[0];
       result = Number(x) * Number(y);
     }
     res.status(200).json({
