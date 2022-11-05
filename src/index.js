@@ -30,11 +30,16 @@ app.post("/", async (req, res, next) => {
       err.statusCode = 404;
       throw err;
     }
-    if (operation_type === "addition") {
+    const addition = operation_type.match(/(addition|add|plus)/i);
+    const subtraction = operation_type.match(/(subtraction|subtract|minus)/i);
+    const multiplication = operation_type.match(
+      /(multiplication|multiply|times)/i,
+    );
+    if (operation_type === addition) {
       result = x + y;
-    } else if (operation_type === "subtraction") {
+    } else if (operation_type === subtraction) {
       result = Math.abs(x - y);
-    } else if (operation_type === "multiplication") {
+    } else if (operation_type === multiplication) {
       result = x * y;
     }
     res.status(200).json({
